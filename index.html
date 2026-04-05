@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filiz Çavuş – İngilizce Dersleri</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:#1a6fb5;--primary-light:#3a8fd5;--secondary:#f7a800;
+  --accent:#e84393;--green:#22c55e;--red:#ef4444;--bg:#f0f6ff;
+  --card:#ffffff;--text:#1e293b;--muted:#64748b;--border:#cbd5e1;
+  --g5:#f59e0b;--g6:#10b981;--g7:#8b5cf6;--g8:#ef4444;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#1a3a6b 0%,#1a6fb5 50%,#2dd4bf 100%);position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(26,63,107,.3)}
+.header-inner{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:white}
+.logo-icon{width:44px;height:44px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid rgba(255,255,255,.4)}
+.logo-text h1{font-size:1.05rem;font-weight:900;color:white;line-height:1.2}
+.logo-text span{font-size:.75rem;color:rgba(255,255,255,.8);font-weight:600}
+.header-nav{display:flex;gap:6px;flex-wrap:wrap}
+.grade-btn{padding:6px 13px;border:none;border-radius:20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer;transition:all .2s;color:white;opacity:.82}
+.grade-btn:hover,.grade-btn.active{opacity:1;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.grade-btn[data-grade="5"]{background:var(--g5)}
+.grade-btn[data-grade="6"]{background:var(--g6)}
+.grade-btn[data-grade="7"]{background:var(--g7)}
+.grade-btn[data-grade="8"]{background:var(--g8)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1a3a6b 0%,#1a6fb5 60%,#2dd4bf 100%);padding:48px 20px 56px;text-align:center;color:white;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+.hero-emoji{font-size:2.8rem;margin-bottom:8px;display:block}
+.hero h2{font-size:1.9rem;font-weight:900;margin-bottom:8px;font-family:'Caveat',cursive;text-shadow:2px 2px 8px rgba(0,0,0,.2)}
+.hero p{font-size:.95rem;opacity:.9;max-width:480px;margin:0 auto 22px}
+.grade-selector{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.grade-card{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,.3);border-radius:14px;padding:12px 20px;cursor:pointer;transition:all .25s;text-align:center;min-width:80px;color:white}
+.grade-card:hover{background:rgba(255,255,255,.3);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.grade-card .gnum{font-size:1.7rem;font-weight:900;display:block}
+.grade-card .glabel{font-size:.75rem;font-weight:700;opacity:.9}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+.grade-section{display:none}
+.grade-section.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* GRADE HEADER */
+.grade-header{display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:16px;margin-bottom:26px;color:white}
+.grade-header h2{font-size:1.5rem;font-weight:900}
+.grade-header p{font-size:.88rem;opacity:.9}
+.g5-h{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
+.g6-h{background:linear-gradient(135deg,#10b981,#34d399)}
+.g7-h{background:linear-gradient(135deg,#8b5cf6,#a78bfa)}
+.g8-h{background:linear-gradient(135deg,#ef4444,#f87171)}
+.meb-badge{display:inline-flex;align-items:center;gap:4px;background:#e0f2fe;color:#0369a1;padding:3px 9px;border-radius:8px;font-size:.7rem;font-weight:800;margin-left:auto;white-space:nowrap}
+
+/* UNIT TABS */
+.unit-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.unit-tab{padding:7px 14px;border-radius:20px;border:2px solid var(--border);background:white;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:var(--muted);transition:all .2s}
+.unit-tab:hover{border-color:var(--primary);color:var(--primary)}
+.unit-tab.active{background:var(--primary);border-color:var(--primary);color:white}
+
+/* LESSON GRID */
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+@media(max-width:680px){.lesson-grid{grid-template-columns:1fr}}
+
+/* CARDS */
+.card{background:var(--card);border-radius:16px;box-shadow:0 2px 14px rgba(0,0,0,.07);overflow:hidden;border:1px solid var(--border)}
+.card-header{padding:13px 16px 11px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--border)}
+.card-header .icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.card-header h3{font-size:.9rem;font-weight:800}
+.card-header .badge{margin-left:auto;padding:2px 9px;border-radius:9px;font-size:.68rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.card-body{padding:14px 16px}
+
+/* KONU ANLATIM */
+.tr-note{background:#fef3c7;border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:7px 11px;font-size:.81rem;color:#78350f;margin-bottom:9px;font-weight:600}
+.explain-section{margin-bottom:12px}
+.explain-section h4{font-size:.85rem;font-weight:800;color:var(--primary);margin-bottom:7px;display:flex;align-items:center;gap:5px}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.81rem;margin-bottom:9px}
+.grammar-table th{background:#e0f2fe;color:#0c4a6e;padding:5px 9px;text-align:left;font-weight:800}
+.grammar-table td{padding:5px 9px;border-bottom:1px solid #f1f5f9}
+.grammar-table tr:hover td{background:#f8fafc}
+.example-box{background:#f0fdf4;border-left:3px solid #22c55e;border-radius:0 8px 8px 0;padding:7px 11px;font-size:.81rem;margin-bottom:7px}
+.example-box .en{font-weight:700;color:#15803d}
+.example-box .tr{color:#166534;font-style:italic;font-size:.76rem}
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:9px}
+.vocab-item{display:flex;gap:5px;align-items:center;padding:5px 9px;background:#f0f9ff;border-radius:7px;font-size:.79rem;border:1px solid #bae6fd}
+.vocab-item .en{font-weight:800;color:#0c4a6e}
+.vocab-item .tr{color:var(--muted)}
+
+/* READING */
+.reading-text{background:#f8fafc;border-radius:11px;padding:14px;font-size:.86rem;line-height:1.85;margin-bottom:12px;border:1px solid var(--border)}
+.reading-text .hl{color:var(--primary);font-weight:800}
+
+/* FILL IN THE BLANK */
+.word-bank{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
+.word-chip{padding:4px 11px;background:#e0f2fe;border-radius:20px;font-size:.78rem;font-weight:700;color:#0c4a6e;cursor:pointer;transition:all .15s;user-select:none;border:2px solid transparent}
+.word-chip:hover{background:#bae6fd}
+.word-chip.chip-selected{background:#bfdbfe;border-color:#3b82f6}
+.word-chip.used{opacity:.35;text-decoration:line-through;cursor:default;pointer-events:none}
+.blank-sentence{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px;font-size:.86rem;padding:9px 11px;background:#f8fafc;border-radius:9px;border:1px solid var(--border)}
+.blank-sentence span{font-weight:600}
+.blank-input{border:none;border-bottom:2px solid var(--primary);background:transparent;font-family:'Nunito',sans-serif;font-size:.86rem;font-weight:700;color:var(--primary);width:100px;text-align:center;outline:none;padding:2px 4px;cursor:pointer}
+.blank-input.correct{border-bottom-color:var(--green);color:var(--green)}
+.blank-input.wrong{border-bottom-color:var(--red);color:var(--red)}
+
+/* QUIZ */
+.quiz-container{display:flex;flex-direction:column;gap:12px}
+.quiz-q{background:#f8fafc;border-radius:11px;padding:13px;border:1px solid var(--border)}
+.quiz-q .q-text{font-size:.88rem;font-weight:700;margin-bottom:9px;color:var(--text)}
+.quiz-q .q-num{display:inline-block;background:var(--primary);color:white;border-radius:6px;padding:1px 7px;font-size:.72rem;font-weight:800;margin-right:5px}
+.quiz-options{display:flex;flex-direction:column;gap:5px}
+.quiz-option{padding:8px 13px;border-radius:8px;border:2px solid var(--border);cursor:pointer;font-size:.83rem;font-weight:600;transition:all .15s;background:white;display:flex;align-items:center;gap:8px;text-align:left}
+.quiz-option:hover:not(.locked){border-color:var(--primary);background:#eff6ff}
+.quiz-option.selected{border-color:var(--primary);background:#dbeafe}
+.quiz-option.correct-ans{border-color:var(--green)!important;background:#dcfce7!important;color:#166534!important;font-weight:800}
+.quiz-option.wrong-ans{border-color:var(--red)!important;background:#fee2e2!important;color:#991b1b!important}
+.quiz-option .opt-letter{width:22px;height:22px;border-radius:50%;background:#e2e8f0;color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0}
+.quiz-option.selected .opt-letter{background:var(--primary);color:white}
+.quiz-option.correct-ans .opt-letter{background:var(--green);color:white}
+.quiz-option.wrong-ans .opt-letter{background:var(--red);color:white}
+
+/* BUTTONS */
+.btn{padding:9px 20px;border-radius:10px;border:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--primary);color:white}
+.btn-primary:hover{background:var(--primary-light);transform:translateY(-1px)}
+.btn-secondary{background:#e2e8f0;color:var(--text)}
+.btn-secondary:hover{background:#cbd5e1}
+.btn-row{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+
+/* SCORE */
+.score-box{margin-top:12px;padding:14px;border-radius:12px;text-align:center;display:none}
+.score-box.show{display:block}
+.score-box.great{background:#dcfce7;border:2px solid #86efac}
+.score-box.ok{background:#fef3c7;border:2px solid #fcd34d}
+.score-box.low{background:#fee2e2;border:2px solid #fca5a5}
+.score-box .score-big{font-size:2rem;font-weight:900;display:block;margin-bottom:4px}
+.score-box .score-msg{font-size:.9rem;font-weight:700}
+.score-box .score-detail{font-size:.78rem;margin-top:4px;opacity:.75}
+
+@media(max-width:480px){
+  .header-inner{flex-direction:column;align-items:flex-start}
+  .hero h2{font-size:1.4rem}
+  .vocab-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#" onclick="showGrade(null);return false">
+      <div class="logo-icon">📚</div>
+      <div class="logo-text"><h1>Filiz Çavuş</h1><span>İngilizce Dersleri</span></div>
+    </a>
+    <nav class="header-nav">
+      <button class="grade-btn" data-grade="5" onclick="showGrade(5)">5. Sınıf</button>
+      <button class="grade-btn" data-grade="6" onclick="showGrade(6)">6. Sınıf</button>
+      <button class="grade-btn" data-grade="7" onclick="showGrade(7)">7. Sınıf</button>
+      <button class="grade-btn" data-grade="8" onclick="showGrade(8)">8. Sınıf</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home-section">
+  <span class="hero-emoji">🌟</span>
+  <h2>Hoş geldin! Welcome!</h2>
+  <p>MEB müfredatına uygun İngilizce dersler. Sınıfını seç ve öğrenmeye başla!</p>
+  <div class="grade-selector">
+    <div class="grade-card" onclick="showGrade(5)"><span class="gnum">5</span><span class="glabel">Sınıf</span></div>
+    <div class="grade-card" onclick="showGrade(6)"><span class="gnum">6</span><span class="glabel">Sınıf</span></div>
+    <div class="grade-card" onclick="showGrade(7)"><span class="gnum">7</span><span class="glabel">Sınıf</span></div>
+    <div class="grade-card" onclick="showGrade(8)"><span class="gnum">8</span><span class="glabel">Sınıf</span></div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ============================================================
+     5. SINIF
+     ============================================================ -->
+<section class="grade-section" id="grade-5">
+  <div class="grade-header g5-h">
+    <div style="font-size:2rem">🎒</div>
+    <div><h2>5. Sınıf İngilizce</h2><p>MEB Türkiye Yüzyılı Maarif Modeli · A1 Seviyesi</p></div>
+    <span class="meb-badge">📋 MEB 2025-26</span>
+  </div>
+  <div class="unit-tabs">
+    <button class="unit-tab active" onclick="showUnit(5,1,this)">Ünite 1: School</button>
+    <button class="unit-tab" onclick="showUnit(5,2,this)">Ünite 2: Family</button>
+    <button class="unit-tab" onclick="showUnit(5,3,this)">Ünite 3: My Day</button>
+  </div>
+
+  <!-- UNIT 5-1 -->
+  <div class="unit-content" id="unit5-1">
+    <div class="lesson-grid">
+      <!-- Konu -->
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fef3c7">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">People & Places at School</div></div><span class="badge" style="background:#fef3c7;color:#92400e">UNIT 1</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 Bu ünitede okuldaki kişileri, mekânları ve kuralları öğreneceğiz!</div>
+          <div class="explain-section">
+            <h4>🏫 Okul Kelimeleri</h4>
+            <div class="vocab-grid">
+              <div class="vocab-item"><span class="en">teacher</span><span class="tr">öğretmen</span></div>
+              <div class="vocab-item"><span class="en">student</span><span class="tr">öğrenci</span></div>
+              <div class="vocab-item"><span class="en">principal</span><span class="tr">müdür</span></div>
+              <div class="vocab-item"><span class="en">canteen</span><span class="tr">kantin</span></div>
+              <div class="vocab-item"><span class="en">library</span><span class="tr">kütüphane</span></div>
+              <div class="vocab-item"><span class="en">gym</span><span class="tr">spor salonu</span></div>
+              <div class="vocab-item"><span class="en">laboratory</span><span class="tr">laboratuvar</span></div>
+              <div class="vocab-item"><span class="en">corridor</span><span class="tr">koridor</span></div>
+            </div>
+          </div>
+          <div class="explain-section">
+            <h4>📏 Must / Mustn't</h4>
+            <div class="tr-note">💡 must = -meli/-malı (zorunluluk) | mustn't = yapmamalı (yasak)</div>
+            <table class="grammar-table">
+              <tr><th>Must ✅</th><th>Mustn't 🚫</th></tr>
+              <tr><td>You must be on time.</td><td>You mustn't run.</td></tr>
+              <tr><td>You must wear uniform.</td><td>You mustn't shout.</td></tr>
+            </table>
+          </div>
+          <div class="example-box"><div class="en">Students must keep the library quiet.</div><div class="tr">Öğrenciler kütüphaneyi sessiz tutmalı.</div></div>
+          <div class="example-box"><div class="en">You mustn't use phones in class.</div><div class="tr">Sınıfta telefon kullanmamalısın.</div></div>
+        </div>
+      </div>
+      <!-- Okuma -->
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3><div style="font-size:.73rem;color:var(--muted)">My School</div></div></div>
+        <div class="card-body">
+          <div class="reading-text">Hi! My name is <span class="hl">Elif</span>. I am a student at Atatürk Middle School in Ankara. My school is big and beautiful. There is a <span class="hl">library</span>, a <span class="hl">canteen</span>, a <span class="hl">gym</span> and a <span class="hl">laboratory</span>.<br><br>My favourite place is the <span class="hl">library</span>. My teacher's name is Mrs Filiz. She teaches English. Students <span class="hl">must</span> wear a uniform and be on time. We <span class="hl">mustn't</span> run in the corridor. I love my school!</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> Where is Elif's school? &nbsp;<b>2.</b> What is her favourite place? &nbsp;<b>3.</b> What must students wear?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r5-1',this)">Cevapları Gör 👁️</button></div>
+          <div id="r5-1" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> Ankara &nbsp; <b>2.</b> The library &nbsp; <b>3.</b> A uniform</div>
+        </div>
+      </div>
+      <!-- Boşluk -->
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3><div style="font-size:.73rem;color:var(--muted)">Fill in the Blanks</div></div></div>
+        <div class="card-body">
+          <div class="tr-note">💡 Kelimeye tıkla, sonra boşluğa tıkla!</div>
+          <div class="word-bank" id="wb5-1">
+            <span class="word-chip" onclick="selectChip(this)">must</span>
+            <span class="word-chip" onclick="selectChip(this)">library</span>
+            <span class="word-chip" onclick="selectChip(this)">teacher</span>
+            <span class="word-chip" onclick="selectChip(this)">mustn't</span>
+            <span class="word-chip" onclick="selectChip(this)">canteen</span>
+          </div>
+          <div id="blanks5-1">
+            <div class="blank-sentence"><span>1. We go to the</span><input class="blank-input" data-answer="canteen" onclick="fillBlank(this)" placeholder="___" readonly><span>for lunch.</span></div>
+            <div class="blank-sentence"><span>2. Students</span><input class="blank-input" data-answer="must" onclick="fillBlank(this)" placeholder="___" readonly><span>do their homework.</span></div>
+            <div class="blank-sentence"><span>3. You</span><input class="blank-input" data-answer="mustn't" onclick="fillBlank(this)" placeholder="___" readonly><span>run in the hall.</span></div>
+            <div class="blank-sentence"><span>4. The</span><input class="blank-input" data-answer="teacher" onclick="fillBlank(this)" placeholder="___" readonly><span>explains the lesson.</span></div>
+            <div class="blank-sentence"><span>5. I borrow books from the</span><input class="blank-input" data-answer="library" onclick="fillBlank(this)" placeholder="___" readonly><span>.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks5-1','wb5-1')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks5-1','wb5-1')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks5-1-result"></div>
+        </div>
+      </div>
+      <!-- Quiz -->
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – School (12 Soru)</h3></div></div>
+        <div class="card-body" id="qbody-5-1">
+          <div class="quiz-container" id="quiz5-1"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz5-1')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz5-1')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz5-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT 5-2 -->
+  <div class="unit-content" id="unit5-2" style="display:none">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fef3c7">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Family Members & Have Got</div></div><span class="badge" style="background:#fef3c7;color:#92400e">UNIT 2</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 Aile üyelerini ve "have got" yapısını öğreneceğiz!</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">mother/mum</span><span class="tr">anne</span></div>
+            <div class="vocab-item"><span class="en">father/dad</span><span class="tr">baba</span></div>
+            <div class="vocab-item"><span class="en">sister</span><span class="tr">kız kardeş</span></div>
+            <div class="vocab-item"><span class="en">brother</span><span class="tr">erkek kardeş</span></div>
+            <div class="vocab-item"><span class="en">grandmother</span><span class="tr">büyükanne</span></div>
+            <div class="vocab-item"><span class="en">grandfather</span><span class="tr">büyükbaba</span></div>
+            <div class="vocab-item"><span class="en">aunt</span><span class="tr">teyze/hala</span></div>
+            <div class="vocab-item"><span class="en">uncle</span><span class="tr">amca/dayı</span></div>
+          </div>
+          <div class="tr-note">💡 have got = sahip olmak | I/You/We/They → have got | He/She/It → has got</div>
+          <table class="grammar-table">
+            <tr><th>Olumlu (+)</th><th>Olumsuz (-)</th></tr>
+            <tr><td>I <b>have got</b> a sister.</td><td>I <b>haven't got</b> a brother.</td></tr>
+            <tr><td>She <b>has got</b> blue eyes.</td><td>He <b>hasn't got</b> a pet.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3><div style="font-size:.73rem;color:var(--muted)">My Family</div></div></div>
+        <div class="card-body">
+          <div class="reading-text">Hello! I'm <span class="hl">Kemal</span>. I <span class="hl">have got</span> a mother, a father and one sister. My sister's name is Selin. She is 12 years old.<br><br>My mother <span class="hl">has got</span> brown hair and green eyes. She is a doctor. My father <span class="hl">has got</span> black hair. He is an engineer. We also have a cat named Pamuk. I love my family! ❤️</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> How many siblings does Kemal have? &nbsp;<b>2.</b> What does his mother do? &nbsp;<b>3.</b> What is the cat's name?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r5-2',this)">Cevapları Gör 👁️</button></div>
+          <div id="r5-2" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> One sister &nbsp; <b>2.</b> She is a doctor &nbsp; <b>3.</b> Pamuk</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb5-2">
+            <span class="word-chip" onclick="selectChip(this)">have got</span>
+            <span class="word-chip" onclick="selectChip(this)">hasn't got</span>
+            <span class="word-chip" onclick="selectChip(this)">sister</span>
+            <span class="word-chip" onclick="selectChip(this)">uncle</span>
+            <span class="word-chip" onclick="selectChip(this)">grandmother</span>
+          </div>
+          <div id="blanks5-2">
+            <div class="blank-sentence"><span>1. I</span><input class="blank-input" data-answer="have got" onclick="fillBlank(this)" placeholder="___" readonly><span>two cats.</span></div>
+            <div class="blank-sentence"><span>2. She</span><input class="blank-input" data-answer="hasn't got" onclick="fillBlank(this)" placeholder="___" readonly><span>a brother.</span></div>
+            <div class="blank-sentence"><span>3. My dad's brother is my</span><input class="blank-input" data-answer="uncle" onclick="fillBlank(this)" placeholder="___" readonly><span>.</span></div>
+            <div class="blank-sentence"><span>4. My mum's mum is my</span><input class="blank-input" data-answer="grandmother" onclick="fillBlank(this)" placeholder="___" readonly><span>.</span></div>
+            <div class="blank-sentence"><span>5. My</span><input class="blank-input" data-answer="sister" onclick="fillBlank(this)" placeholder="___" readonly><span>is 10 years old.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks5-2','wb5-2')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks5-2','wb5-2')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks5-2-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – Family (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz5-2"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz5-2')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz5-2')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz5-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT 5-3 -->
+  <div class="unit-content" id="unit5-3" style="display:none">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fef3c7">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Daily Routines – Simple Present</div></div><span class="badge" style="background:#fef3c7;color:#92400e">UNIT 3</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 Günlük hayatta yaptıklarımızı Simple Present Tense (Geniş Zaman) ile anlatırız!</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">wake up</span><span class="tr">uyanmak</span></div>
+            <div class="vocab-item"><span class="en">have breakfast</span><span class="tr">kahvaltı yapmak</span></div>
+            <div class="vocab-item"><span class="en">go to school</span><span class="tr">okula gitmek</span></div>
+            <div class="vocab-item"><span class="en">do homework</span><span class="tr">ödev yapmak</span></div>
+            <div class="vocab-item"><span class="en">watch TV</span><span class="tr">TV izlemek</span></div>
+            <div class="vocab-item"><span class="en">go to bed</span><span class="tr">yatmak</span></div>
+            <div class="vocab-item"><span class="en">brush teeth</span><span class="tr">diş fırçalamak</span></div>
+            <div class="vocab-item"><span class="en">have lunch</span><span class="tr">öğle yemeği</span></div>
+          </div>
+          <div class="tr-note">💡 He / She / It ile fiile <b>-s</b> veya <b>-es</b> eklenir: go → go<b>es</b>, watch → watch<b>es</b></div>
+          <table class="grammar-table">
+            <tr><th>I/You/We/They</th><th>He/She/It</th></tr>
+            <tr><td>I <b>wake up</b> at 7.</td><td>She <b>wakes up</b> at 7.</td></tr>
+            <tr><td>They <b>go</b> to school.</td><td>He <b>goes</b> to school.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3><div style="font-size:.73rem;color:var(--muted)">A Day in My Life</div></div></div>
+        <div class="card-body">
+          <div class="reading-text">My name is <span class="hl">Ahmet</span>. I <span class="hl">wake up</span> at 6:30 every morning. First, I <span class="hl">brush my teeth</span> and then I <span class="hl">have breakfast</span>. I always eat eggs and drink tea.<br><br>I <span class="hl">go to school</span> at 7:45. After school, I <span class="hl">do my homework</span>. In the evening, I sometimes <span class="hl">watch TV</span> with my family. I <span class="hl">go to bed</span> at 10 o'clock. 😊</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> What time does Ahmet wake up? &nbsp;<b>2.</b> What does he eat for breakfast? &nbsp;<b>3.</b> When does he go to bed?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r5-3',this)">Cevapları Gör 👁️</button></div>
+          <div id="r5-3" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> At 6:30 &nbsp; <b>2.</b> Eggs &nbsp; <b>3.</b> At 10 o'clock</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb5-3">
+            <span class="word-chip" onclick="selectChip(this)">wakes up</span>
+            <span class="word-chip" onclick="selectChip(this)">does</span>
+            <span class="word-chip" onclick="selectChip(this)">go to bed</span>
+            <span class="word-chip" onclick="selectChip(this)">have breakfast</span>
+            <span class="word-chip" onclick="selectChip(this)">watches</span>
+          </div>
+          <div id="blanks5-3">
+            <div class="blank-sentence"><span>1. She</span><input class="blank-input" data-answer="wakes up" onclick="fillBlank(this)" placeholder="___" readonly><span>at 7 a.m.</span></div>
+            <div class="blank-sentence"><span>2. I</span><input class="blank-input" data-answer="have breakfast" onclick="fillBlank(this)" placeholder="___" readonly><span>every morning.</span></div>
+            <div class="blank-sentence"><span>3. He</span><input class="blank-input" data-answer="does" onclick="fillBlank(this)" placeholder="___" readonly><span>his homework after school.</span></div>
+            <div class="blank-sentence"><span>4. She</span><input class="blank-input" data-answer="watches" onclick="fillBlank(this)" placeholder="___" readonly><span>TV in the evening.</span></div>
+            <div class="blank-sentence"><span>5. I always</span><input class="blank-input" data-answer="go to bed" onclick="fillBlank(this)" placeholder="___" readonly><span>at 10 pm.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks5-3','wb5-3')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks5-3','wb5-3')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks5-3-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – My Day (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz5-3"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz5-3')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz5-3')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz5-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. SINIF
+     ============================================================ -->
+<section class="grade-section" id="grade-6">
+  <div class="grade-header g6-h">
+    <div style="font-size:2rem">🌍</div>
+    <div><h2>6. Sınıf İngilizce</h2><p>MEB Müfredatı · A1+ Seviyesi</p></div>
+    <span class="meb-badge">📋 MEB 2025-26</span>
+  </div>
+  <div class="unit-tabs">
+    <button class="unit-tab active" onclick="showUnit(6,1,this)">Ünite 1: Free Time</button>
+    <button class="unit-tab" onclick="showUnit(6,2,this)">Ünite 2: Food</button>
+  </div>
+  <div class="unit-content" id="unit6-1">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#d1fae5">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Free Time Activities – Like/Love/Hate</div></div><span class="badge" style="background:#d1fae5;color:#065f46">UNIT 1</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 like = sevmek | love = çok sevmek | hate = nefret etmek. Bunların ardından fiil <b>-ing</b> alır!</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">play football</span><span class="tr">futbol oynamak</span></div>
+            <div class="vocab-item"><span class="en">read comics</span><span class="tr">çizgi roman okumak</span></div>
+            <div class="vocab-item"><span class="en">listen to music</span><span class="tr">müzik dinlemek</span></div>
+            <div class="vocab-item"><span class="en">surf the internet</span><span class="tr">internette gezinmek</span></div>
+            <div class="vocab-item"><span class="en">go cycling</span><span class="tr">bisiklete binmek</span></div>
+            <div class="vocab-item"><span class="en">paint pictures</span><span class="tr">resim yapmak</span></div>
+          </div>
+          <table class="grammar-table">
+            <tr><th>Yapı</th><th>Örnek</th></tr>
+            <tr><td>like + -ing</td><td>I <b>like playing</b> football.</td></tr>
+            <tr><td>love + -ing</td><td>She <b>loves listening</b> to music.</td></tr>
+            <tr><td>hate + -ing</td><td>He <b>hates reading</b> comics.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3></div></div>
+        <div class="card-body">
+          <div class="reading-text">Hi, I'm <span class="hl">Zeynep</span>! In my free time, I <span class="hl">love listening</span> to music. I <span class="hl">like painting</span> pictures too. My favourite painter is Van Gogh.<br><br>My brother <span class="hl">loves playing</span> football. He practises three times a week. My sister <span class="hl">likes surfing</span> the internet. She wants to be a YouTuber! 😄<br><br>We all <span class="hl">hate doing</span> the dishes. But we love spending time together.</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> What does Zeynep love? &nbsp;<b>2.</b> How often does her brother practise? &nbsp;<b>3.</b> What does the family hate?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r6-1',this)">Cevapları Gör 👁️</button></div>
+          <div id="r6-1" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> Listening to music &nbsp; <b>2.</b> Three times a week &nbsp; <b>3.</b> Doing the dishes</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb6-1">
+            <span class="word-chip" onclick="selectChip(this)">loves</span>
+            <span class="word-chip" onclick="selectChip(this)">hate</span>
+            <span class="word-chip" onclick="selectChip(this)">playing</span>
+            <span class="word-chip" onclick="selectChip(this)">listening</span>
+            <span class="word-chip" onclick="selectChip(this)">cycling</span>
+          </div>
+          <div id="blanks6-1">
+            <div class="blank-sentence"><span>1. She</span><input class="blank-input" data-answer="loves" onclick="fillBlank(this)" placeholder="___" readonly><span>painting pictures.</span></div>
+            <div class="blank-sentence"><span>2. I like</span><input class="blank-input" data-answer="listening" onclick="fillBlank(this)" placeholder="___" readonly><span>to music.</span></div>
+            <div class="blank-sentence"><span>3. They</span><input class="blank-input" data-answer="hate" onclick="fillBlank(this)" placeholder="___" readonly><span>doing homework.</span></div>
+            <div class="blank-sentence"><span>4. He enjoys</span><input class="blank-input" data-answer="playing" onclick="fillBlank(this)" placeholder="___" readonly><span>football.</span></div>
+            <div class="blank-sentence"><span>5. We go</span><input class="blank-input" data-answer="cycling" onclick="fillBlank(this)" placeholder="___" readonly><span>on Sundays.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks6-1','wb6-1')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks6-1','wb6-1')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks6-1-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – Free Time (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz6-1"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz6-1')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz6-1')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz6-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="unit-content" id="unit6-2" style="display:none">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#d1fae5">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Food – Some/Any – Countable/Uncountable</div></div><span class="badge" style="background:#d1fae5;color:#065f46">UNIT 2</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 Sayılabilir (countable) ve sayılamaz (uncountable) yiyecekleri öğreneceğiz!</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">apple 🍎</span><span class="tr">sayılabilir</span></div>
+            <div class="vocab-item"><span class="en">bread 🍞</span><span class="tr">sayılamaz</span></div>
+            <div class="vocab-item"><span class="en">egg 🥚</span><span class="tr">sayılabilir</span></div>
+            <div class="vocab-item"><span class="en">milk 🥛</span><span class="tr">sayılamaz</span></div>
+            <div class="vocab-item"><span class="en">orange 🍊</span><span class="tr">sayılabilir</span></div>
+            <div class="vocab-item"><span class="en">cheese 🧀</span><span class="tr">sayılamaz</span></div>
+          </div>
+          <div class="tr-note">💡 some = olumlu cümlelerde | any = soru ve olumsuz cümlelerde</div>
+          <table class="grammar-table">
+            <tr><th>Some (+)</th><th>Any (? / -)</th></tr>
+            <tr><td>There is <b>some</b> milk.</td><td>Is there <b>any</b> milk?</td></tr>
+            <tr><td>I have <b>some</b> apples.</td><td>I don't have <b>any</b> eggs.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3></div></div>
+        <div class="card-body">
+          <div class="reading-text">On Sundays, my mum makes a big breakfast. There is <span class="hl">some</span> bread, <span class="hl">some</span> cheese and <span class="hl">some</span> eggs on the table.<br><br>"Is there <span class="hl">any</span> orange juice?" asks my brother. "No, there isn't <span class="hl">any</span> juice," says mum. "But there are <span class="hl">some</span> oranges. I can make fresh juice!"<br><br>I love our Sunday breakfasts! 🍊🥚🧀</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> When do they have a big breakfast? &nbsp;<b>2.</b> Is there any orange juice? &nbsp;<b>3.</b> What does the mum offer?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r6-2',this)">Cevapları Gör 👁️</button></div>
+          <div id="r6-2" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> On Sundays &nbsp; <b>2.</b> No, there isn't &nbsp; <b>3.</b> Fresh orange juice</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb6-2">
+            <span class="word-chip" onclick="selectChip(this)">some</span>
+            <span class="word-chip" onclick="selectChip(this)">any</span>
+            <span class="word-chip" onclick="selectChip(this)">aren't any</span>
+            <span class="word-chip" onclick="selectChip(this)">is</span>
+            <span class="word-chip" onclick="selectChip(this)">don't have any</span>
+          </div>
+          <div id="blanks6-2">
+            <div class="blank-sentence"><span>1. There is</span><input class="blank-input" data-answer="some" onclick="fillBlank(this)" placeholder="___" readonly><span>cheese in the fridge.</span></div>
+            <div class="blank-sentence"><span>2. Is there</span><input class="blank-input" data-answer="any" onclick="fillBlank(this)" placeholder="___" readonly><span>milk?</span></div>
+            <div class="blank-sentence"><span>3. There</span><input class="blank-input" data-answer="aren't any" onclick="fillBlank(this)" placeholder="___" readonly><span>apples left.</span></div>
+            <div class="blank-sentence"><span>4. There</span><input class="blank-input" data-answer="is" onclick="fillBlank(this)" placeholder="___" readonly><span>some bread on the table.</span></div>
+            <div class="blank-sentence"><span>5. I</span><input class="blank-input" data-answer="don't have any" onclick="fillBlank(this)" placeholder="___" readonly><span>eggs.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks6-2','wb6-2')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks6-2','wb6-2')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks6-2-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – Food (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz6-2"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz6-2')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz6-2')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz6-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. SINIF
+     ============================================================ -->
+<section class="grade-section" id="grade-7">
+  <div class="grade-header g7-h">
+    <div style="font-size:2rem">🚀</div>
+    <div><h2>7. Sınıf İngilizce</h2><p>MEB Müfredatı · A2 Seviyesi</p></div>
+    <span class="meb-badge">📋 MEB 2025-26</span>
+  </div>
+  <div class="unit-tabs">
+    <button class="unit-tab active" onclick="showUnit(7,1,this)">Ünite 1: Appearance</button>
+    <button class="unit-tab" onclick="showUnit(7,2,this)">Ünite 2: Travel</button>
+  </div>
+  <div class="unit-content" id="unit7-1">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Physical Appearance & Simple Past</div></div><span class="badge" style="background:#ede9fe;color:#4c1d95">UNIT 1</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 Fiziksel özellikleri ve Simple Past (Geçmiş Zaman) yapısını öğreneceğiz!</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">tall / short</span><span class="tr">uzun / kısa</span></div>
+            <div class="vocab-item"><span class="en">slim / overweight</span><span class="tr">ince / kilolu</span></div>
+            <div class="vocab-item"><span class="en">curly / straight</span><span class="tr">kıvırcık / düz</span></div>
+            <div class="vocab-item"><span class="en">bald</span><span class="tr">kel</span></div>
+            <div class="vocab-item"><span class="en">beard / moustache</span><span class="tr">sakal / bıyık</span></div>
+            <div class="vocab-item"><span class="en">glasses</span><span class="tr">gözlük</span></div>
+          </div>
+          <div class="tr-note">💡 Düzenli fiiller: -ed | Düzensiz fiiller: özel haller ezberlenmalı!</div>
+          <table class="grammar-table">
+            <tr><th>Base Form</th><th>Simple Past</th></tr>
+            <tr><td>walk</td><td>walked</td></tr>
+            <tr><td>go</td><td>went</td></tr>
+            <tr><td>see</td><td>saw</td></tr>
+            <tr><td>eat</td><td>ate</td></tr>
+            <tr><td>wear</td><td>wore</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3></div></div>
+        <div class="card-body">
+          <div class="reading-text">Last weekend, I <span class="hl">went</span> to a school art exhibition with my friend Mert. We <span class="hl">saw</span> many amazing paintings. One artist <span class="hl">was</span> a tall man with short grey hair and a beard. He <span class="hl">wore</span> glasses.<br><br>We <span class="hl">talked</span> to him for a long time. He <span class="hl">told</span> us he <span class="hl">started</span> painting when he was 8 years old! After the exhibition, we <span class="hl">ate</span> sandwiches and <span class="hl">drank</span> lemonade. It was a wonderful day! 🎨</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> Where did the writer go? &nbsp;<b>2.</b> Describe the artist. &nbsp;<b>3.</b> When did the artist start painting?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r7-1',this)">Cevapları Gör 👁️</button></div>
+          <div id="r7-1" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> Art exhibition &nbsp; <b>2.</b> Tall, short grey hair, beard, glasses &nbsp; <b>3.</b> When he was 8</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb7-1">
+            <span class="word-chip" onclick="selectChip(this)">went</span>
+            <span class="word-chip" onclick="selectChip(this)">saw</span>
+            <span class="word-chip" onclick="selectChip(this)">ate</span>
+            <span class="word-chip" onclick="selectChip(this)">talked</span>
+            <span class="word-chip" onclick="selectChip(this)">wore</span>
+          </div>
+          <div id="blanks7-1">
+            <div class="blank-sentence"><span>1. We</span><input class="blank-input" data-answer="went" onclick="fillBlank(this)" placeholder="___" readonly><span>to the park yesterday.</span></div>
+            <div class="blank-sentence"><span>2. She</span><input class="blank-input" data-answer="wore" onclick="fillBlank(this)" placeholder="___" readonly><span>a red dress at the party.</span></div>
+            <div class="blank-sentence"><span>3. They</span><input class="blank-input" data-answer="ate" onclick="fillBlank(this)" placeholder="___" readonly><span>pizza for lunch.</span></div>
+            <div class="blank-sentence"><span>4. He</span><input class="blank-input" data-answer="talked" onclick="fillBlank(this)" placeholder="___" readonly><span>to his teacher after class.</span></div>
+            <div class="blank-sentence"><span>5. I</span><input class="blank-input" data-answer="saw" onclick="fillBlank(this)" placeholder="___" readonly><span>a great film last night.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks7-1','wb7-1')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks7-1','wb7-1')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks7-1-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – Appearance & Past (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz7-1"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz7-1')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz7-1')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz7-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="unit-content" id="unit7-2" style="display:none">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Travel – Be Going To</div></div><span class="badge" style="background:#ede9fe;color:#4c1d95">UNIT 2</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 "be going to" = planlanmış yakın gelecek için kullanılır!</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">passport</span><span class="tr">pasaport</span></div>
+            <div class="vocab-item"><span class="en">suitcase</span><span class="tr">bavul</span></div>
+            <div class="vocab-item"><span class="en">departure</span><span class="tr">kalkış</span></div>
+            <div class="vocab-item"><span class="en">arrival</span><span class="tr">varış</span></div>
+            <div class="vocab-item"><span class="en">book a hotel</span><span class="tr">otel rezervasyonu yapmak</span></div>
+            <div class="vocab-item"><span class="en">souvenir</span><span class="tr">hediyelik eşya</span></div>
+          </div>
+          <table class="grammar-table">
+            <tr><th>Olumlu</th><th>Olumsuz</th></tr>
+            <tr><td>I <b>am going to</b> travel.</td><td>I'm <b>not going to</b> fly.</td></tr>
+            <tr><td>She <b>is going to</b> pack.</td><td>She <b>isn't going to</b> stay.</td></tr>
+            <tr><td>They <b>are going to</b> visit.</td><td>We <b>aren't going to</b> drive.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3></div></div>
+        <div class="card-body">
+          <div class="reading-text">This summer, my family <span class="hl">is going to travel</span> to Cappadocia. We <span class="hl">are going to stay</span> in a cave hotel for three nights. My mum <span class="hl">is going to take</span> a lot of photos.<br><br>We <span class="hl">are going to ride</span> horses and watch the hot air balloons at sunrise. My dad <span class="hl">is not going to fly</span> in a balloon because he is afraid of heights! 😄<br><br>I <span class="hl">am going to buy</span> a souvenir for my best friend. I can't wait!</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> Where are they going? &nbsp;<b>2.</b> How long are they staying? &nbsp;<b>3.</b> Why won't dad fly?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r7-2',this)">Cevapları Gör 👁️</button></div>
+          <div id="r7-2" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> Cappadocia &nbsp; <b>2.</b> Three nights &nbsp; <b>3.</b> Afraid of heights</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb7-2">
+            <span class="word-chip" onclick="selectChip(this)">is going to</span>
+            <span class="word-chip" onclick="selectChip(this)">are going to</span>
+            <span class="word-chip" onclick="selectChip(this)">isn't going to</span>
+            <span class="word-chip" onclick="selectChip(this)">passport</span>
+            <span class="word-chip" onclick="selectChip(this)">suitcase</span>
+          </div>
+          <div id="blanks7-2">
+            <div class="blank-sentence"><span>1. She</span><input class="blank-input" data-answer="is going to" onclick="fillBlank(this)" placeholder="___" readonly><span>visit Istanbul.</span></div>
+            <div class="blank-sentence"><span>2. We</span><input class="blank-input" data-answer="are going to" onclick="fillBlank(this)" placeholder="___" readonly><span>fly to London.</span></div>
+            <div class="blank-sentence"><span>3. He</span><input class="blank-input" data-answer="isn't going to" onclick="fillBlank(this)" placeholder="___" readonly><span>take the bus.</span></div>
+            <div class="blank-sentence"><span>4. Don't forget your</span><input class="blank-input" data-answer="passport" onclick="fillBlank(this)" placeholder="___" readonly><span>!</span></div>
+            <div class="blank-sentence"><span>5. I packed my</span><input class="blank-input" data-answer="suitcase" onclick="fillBlank(this)" placeholder="___" readonly><span>last night.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks7-2','wb7-2')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks7-2','wb7-2')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks7-2-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – Travel (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz7-2"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz7-2')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz7-2')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz7-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. SINIF
+     ============================================================ -->
+<section class="grade-section" id="grade-8">
+  <div class="grade-header g8-h">
+    <div style="font-size:2rem">🏆</div>
+    <div><h2>8. Sınıf İngilizce</h2><p>MEB Müfredatı · A2+ / LGS Hazırlık</p></div>
+    <span class="meb-badge">📋 MEB 2025-26</span>
+  </div>
+  <div class="unit-tabs">
+    <button class="unit-tab active" onclick="showUnit(8,1,this)">Ünite 1: Friendship</button>
+    <button class="unit-tab" onclick="showUnit(8,2,this)">Ünite 2: Teen Life</button>
+  </div>
+  <div class="unit-content" id="unit8-1">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fee2e2">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Friendship & Comparative Adjectives</div></div><span class="badge" style="background:#fee2e2;color:#991b1b">UNIT 1</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 Karşılaştırmalı sıfatlar (Comparative Adjectives): İki şeyi kıyaslamak için kullanılır!</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">loyal</span><span class="tr">sadık</span></div>
+            <div class="vocab-item"><span class="en">honest</span><span class="tr">dürüst</span></div>
+            <div class="vocab-item"><span class="en">supportive</span><span class="tr">destekleyici</span></div>
+            <div class="vocab-item"><span class="en">trustworthy</span><span class="tr">güvenilir</span></div>
+            <div class="vocab-item"><span class="en">caring</span><span class="tr">şefkatli</span></div>
+            <div class="vocab-item"><span class="en">reliable</span><span class="tr">güvenilir</span></div>
+          </div>
+          <div class="tr-note">💡 Kısa sıfat → -er | Uzun sıfat → more + sıfat | Düzensiz: good→better, bad→worse</div>
+          <table class="grammar-table">
+            <tr><th>Sıfat</th><th>Karşılaştırma</th><th>Örnek</th></tr>
+            <tr><td>kind</td><td>kinder</td><td>She is kinder than me.</td></tr>
+            <tr><td>honest</td><td>more honest</td><td>He is more honest.</td></tr>
+            <tr><td>good</td><td>better</td><td>She is better at maths.</td></tr>
+            <tr><td>bad</td><td>worse</td><td>He is worse than me.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3></div></div>
+        <div class="card-body">
+          <div class="reading-text">True friendship is one of the greatest things in life. A good friend is <span class="hl">loyal</span>, <span class="hl">honest</span> and <span class="hl">caring</span>.<br><br>My best friend Yasemin is <span class="hl">more reliable</span> than anyone I know. She always keeps her promises. She is also <span class="hl">kinder</span> than me — she helps everyone without asking for anything in return.<br><br>I think a <span class="hl">trustworthy</span> friend is <span class="hl">more valuable</span> than gold. True friends are <span class="hl">harder</span> to find than you think! 💛</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> What qualities does a good friend have? &nbsp;<b>2.</b> Why is Yasemin reliable? &nbsp;<b>3.</b> What is more valuable than gold?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r8-1',this)">Cevapları Gör 👁️</button></div>
+          <div id="r8-1" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> Loyal, honest, caring &nbsp; <b>2.</b> She keeps her promises &nbsp; <b>3.</b> A trustworthy friend</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb8-1">
+            <span class="word-chip" onclick="selectChip(this)">more honest</span>
+            <span class="word-chip" onclick="selectChip(this)">kinder</span>
+            <span class="word-chip" onclick="selectChip(this)">better</span>
+            <span class="word-chip" onclick="selectChip(this)">loyal</span>
+            <span class="word-chip" onclick="selectChip(this)">than</span>
+          </div>
+          <div id="blanks8-1">
+            <div class="blank-sentence"><span>1. She is</span><input class="blank-input" data-answer="kinder" onclick="fillBlank(this)" placeholder="___" readonly><span>than her sister.</span></div>
+            <div class="blank-sentence"><span>2. He is</span><input class="blank-input" data-answer="more honest" onclick="fillBlank(this)" placeholder="___" readonly><span>than I thought.</span></div>
+            <div class="blank-sentence"><span>3. This is</span><input class="blank-input" data-answer="better" onclick="fillBlank(this)" placeholder="___" readonly><span>than that one.</span></div>
+            <div class="blank-sentence"><span>4. A good friend must be</span><input class="blank-input" data-answer="loyal" onclick="fillBlank(this)" placeholder="___" readonly><span>to you.</span></div>
+            <div class="blank-sentence"><span>5. She is smarter</span><input class="blank-input" data-answer="than" onclick="fillBlank(this)" placeholder="___" readonly><span>him.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks8-1','wb8-1')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks8-1','wb8-1')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks8-1-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – Friendship (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz8-1"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz8-1')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz8-1')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz8-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="unit-content" id="unit8-2" style="display:none">
+    <div class="lesson-grid">
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fee2e2">📖</div><div><h3>Konu Anlatımı</h3><div style="font-size:.73rem;color:var(--muted)">Teen Life – If Clause Type 1</div></div><span class="badge" style="background:#fee2e2;color:#991b1b">UNIT 2</span></div>
+        <div class="card-body">
+          <div class="tr-note">💡 If Clause Type 1: Gerçekleşmesi mümkün koşullar. If + Present Simple → will + fiil</div>
+          <div class="vocab-grid">
+            <div class="vocab-item"><span class="en">social media</span><span class="tr">sosyal medya</span></div>
+            <div class="vocab-item"><span class="en">volunteer</span><span class="tr">gönüllü olmak</span></div>
+            <div class="vocab-item"><span class="en">pressure</span><span class="tr">baskı</span></div>
+            <div class="vocab-item"><span class="en">self-confident</span><span class="tr">kendinden emin</span></div>
+            <div class="vocab-item"><span class="en">balanced diet</span><span class="tr">dengeli beslenme</span></div>
+            <div class="vocab-item"><span class="en">screen time</span><span class="tr">ekran süresi</span></div>
+          </div>
+          <table class="grammar-table">
+            <tr><th>If (Present Simple)</th><th>Sonuç (will)</th></tr>
+            <tr><td>If you study hard,</td><td>you <b>will</b> pass the exam.</td></tr>
+            <tr><td>If it rains,</td><td>we <b>will</b> stay at home.</td></tr>
+            <tr><td>If she exercises,</td><td>she <b>will</b> be healthier.</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#dcfce7">📄</div><div><h3>Okuma / Reading</h3></div></div>
+        <div class="card-body">
+          <div class="reading-text">Being a teenager today is not easy. We face a lot of <span class="hl">pressure</span> from school, family and <span class="hl">social media</span>.<br><br><span class="hl">If you eat a balanced diet</span> and exercise regularly, you <span class="hl">will feel</span> better. <span class="hl">If you limit</span> your screen time, you <span class="hl">will have</span> more time for real activities.<br><br><span class="hl">If you volunteer</span> in your community, you <span class="hl">will become</span> more <span class="hl">self-confident</span>. <span class="hl">If you believe</span> in yourself, anything is possible! 💪</div>
+          <div style="font-size:.82rem;line-height:1.75"><b>1.</b> What happens if you eat well? &nbsp;<b>2.</b> What does limiting screen time lead to? &nbsp;<b>3.</b> How can volunteering help?</div>
+          <div class="btn-row"><button class="btn btn-primary" onclick="toggleAns('r8-2',this)">Cevapları Gör 👁️</button></div>
+          <div id="r8-2" style="display:none;margin-top:9px;font-size:.82rem;background:#f0fdf4;padding:10px;border-radius:8px;line-height:1.8"><b>1.</b> You will feel better &nbsp; <b>2.</b> More time for real activities &nbsp; <b>3.</b> More self-confident</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#ede9fe">✏️</div><div><h3>Boşluk Doldurma</h3></div></div>
+        <div class="card-body">
+          <div class="word-bank" id="wb8-2">
+            <span class="word-chip" onclick="selectChip(this)">will pass</span>
+            <span class="word-chip" onclick="selectChip(this)">study</span>
+            <span class="word-chip" onclick="selectChip(this)">will be</span>
+            <span class="word-chip" onclick="selectChip(this)">eat</span>
+            <span class="word-chip" onclick="selectChip(this)">will help</span>
+          </div>
+          <div id="blanks8-2">
+            <div class="blank-sentence"><span>1. If you</span><input class="blank-input" data-answer="study" onclick="fillBlank(this)" placeholder="___" readonly><span>hard, you will succeed.</span></div>
+            <div class="blank-sentence"><span>2. If she works hard, she</span><input class="blank-input" data-answer="will pass" onclick="fillBlank(this)" placeholder="___" readonly><span>the exam.</span></div>
+            <div class="blank-sentence"><span>3. If they exercise, they</span><input class="blank-input" data-answer="will be" onclick="fillBlank(this)" placeholder="___" readonly><span>healthier.</span></div>
+            <div class="blank-sentence"><span>4. If you</span><input class="blank-input" data-answer="eat" onclick="fillBlank(this)" placeholder="___" readonly><span>well, you'll feel great.</span></div>
+            <div class="blank-sentence"><span>5. Volunteering</span><input class="blank-input" data-answer="will help" onclick="fillBlank(this)" placeholder="___" readonly><span>you gain confidence.</span></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="checkBlanks('blanks8-2','wb8-2')">Kontrol Et ✔️</button>
+            <button class="btn btn-secondary" onclick="resetBlanks('blanks8-2','wb8-2')">Sıfırla 🔄</button>
+          </div>
+          <div id="blanks8-2-result"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="icon" style="background:#fce7f3">🎯</div><div><h3>Quiz – Teen Life (12 Soru)</h3></div></div>
+        <div class="card-body">
+          <div class="quiz-container" id="quiz8-2"></div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="submitQuiz('quiz8-2')">Sonucu Gör 🏆</button>
+            <button class="btn btn-secondary" onclick="resetQuiz('quiz8-2')">Tekrar 🔄</button>
+          </div>
+          <div class="score-box" id="score-quiz8-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer style="background:#1e293b;color:#94a3b8;text-align:center;padding:22px 20px;font-size:.8rem;line-height:1.8">
+  <div style="font-size:1.1rem;margin-bottom:5px">📚</div>
+  <strong style="color:white">Filiz Çavuş – İngilizce Dersleri</strong><br>
+  MEB Türkiye Yüzyılı Maarif Modeli · 5-8. Sınıf · 2025-2026
+</footer>
+
+<script>
+/* ============================================================
+   QUIZ DATA
+   Each question: { q, opts:[...], ans: 0-based index }
+   ans is ZERO-BASED index of the correct option in opts array.
+   NO tick marks in the question text – options are clean.
+   ============================================================ */
+const QUIZDATA = {
+
+'quiz5-1': [
+  {q:'Öğrenci için doğru İngilizce kelime hangisi?', opts:['teacher','principal','student','librarian'], ans:2},
+  {q:'"Kütüphane" İngilizce nasıl söylenir?', opts:['canteen','gym','corridor','library'], ans:3},
+  {q:'Boşluğu doldurun: "You ___ run in the corridor." (yasak)', opts:['must','can','mustn\'t','should'], ans:2},
+  {q:'"You must wear uniform." Bu cümle ne anlama gelir?', opts:['Üniformayı giymemelisin','Üniformayı giymek zorundasın','Üniformayı giyebilirsin','Üniformayı seviyorsun'], ans:1},
+  {q:'Spor salonu için doğru kelime hangisi?', opts:['laboratory','canteen','library','gym'], ans:3},
+  {q:'Boşluğu doldurun: "You ___ be on time." (zorunlu)', opts:['mustn\'t','must','can\'t','don\'t'], ans:1},
+  {q:'"Okul müdürü" İngilizce nasıl söylenir?', opts:['teacher','secretary','principal','janitor'], ans:2},
+  {q:'Laboratuvar için doğru kelime hangisi?', opts:['corridor','library','canteen','laboratory'], ans:3},
+  {q:'Boşluğu doldurun: "Students ___ use phones in class." (yasak)', opts:['must','should','mustn\'t','can'], ans:2},
+  {q:'"Kantin" için doğru İngilizce kelime?', opts:['library','canteen','gym','corridor'], ans:1},
+  {q:'Doğru cümleyi seç:', opts:['You mustn\'t be polite.','You must listen to your teacher.','You must run in the hall.','You mustn\'t do homework.'], ans:1},
+  {q:'"Koridor" İngilizce nasıl söylenir?', opts:['classroom','corridor','canteen','gym'], ans:1}
+],
+
+'quiz5-2': [
+  {q:'"Büyükanne" İngilizce nasıl söylenir?', opts:['aunt','sister','grandmother','mother'], ans:2},
+  {q:'Boşluğu doldurun: "I ___ two brothers." (var)', opts:['has got','haven\'t got','have got','am got'], ans:2},
+  {q:'"Babamın erkek kardeşi" kim?', opts:['grandfather','cousin','uncle','nephew'], ans:2},
+  {q:'Boşluğu doldurun: "She ___ a pet." (yok)', opts:['have got','has got','hasn\'t got','haven\'t got'], ans:2},
+  {q:'"Kız kardeş" için doğru kelime?', opts:['brother','cousin','niece','sister'], ans:3},
+  {q:'Boşluğu doldurun: "He ___ blue eyes." (var)', opts:['have got','hasn\'t got','haven\'t got','has got'], ans:3},
+  {q:'"Teyze/Hala" İngilizce nasıl söylenir?', opts:['niece','cousin','aunt','grandmother'], ans:2},
+  {q:'"My mum\'s mum is my ___."', opts:['aunt','grandmother','sister','cousin'], ans:1},
+  {q:'Boşluğu doldurun: "They ___ a big house." (var)', opts:['has got','haven\'t got','hasn\'t got','have got'], ans:3},
+  {q:'"Erkek kardeş" için doğru İngilizce kelime?', opts:['son','nephew','brother','uncle'], ans:2},
+  {q:'Doğru cümleyi seç:', opts:['She have got a cat.','He has got a dogs.','I have got a sister.','They has got a pet.'], ans:2},
+  {q:'"Büyükbaba" İngilizce nasıl söylenir?', opts:['uncle','father','grandfather','brother'], ans:2}
+],
+
+'quiz5-3': [
+  {q:'Boşluğu doldurun: "She ___ up at 7 a.m." (uyanır)', opts:['wake','wakes','waked','waking'], ans:1},
+  {q:'"Ödev yapmak" İngilizce nasıl söylenir?', opts:['watch TV','brush teeth','do homework','go to bed'], ans:2},
+  {q:'Boşluğu doldurun: "He ___ to school every day." (gider)', opts:['go','going','goes','gone'], ans:2},
+  {q:'"Kahvaltı yapmak" İngilizce nasıl söylenir?', opts:['have lunch','have dinner','have breakfast','have a snack'], ans:2},
+  {q:'Boşluğu doldurun: "I ___ TV in the evening." (izlerim)', opts:['watches','watch','watching','watched'], ans:1},
+  {q:'"Dişlerini fırçalamak" İngilizce nasıl söylenir?', opts:['wash face','comb hair','get dressed','brush teeth'], ans:3},
+  {q:'Boşluğu doldurun: "She ___ her homework." (yapar - he/she)', opts:['do','doing','does','did'], ans:2},
+  {q:'"Yatmak" (uyumak için yatağa gitmek) İngilizce nasıl söylenir?', opts:['wake up','sit down','go to bed','lie down'], ans:2},
+  {q:'Doğru cümleyi seç:', opts:['She wake up at 6.','He watches TV every night.','They goes to school.','I brushes my teeth.'], ans:1},
+  {q:'"I wake up" → "He" için doğrusu?', opts:['He wake up','He waking up','He wakes up','He waked up'], ans:2},
+  {q:'Boşluğu doldurun: "We ___ lunch at school." (yeriz)', opts:['has','have','haves','having'], ans:1},
+  {q:'Günlük rutinleri anlatan zaman hangisi?', opts:['Past Simple','Present Continuous','Simple Present','Future Simple'], ans:2}
+],
+
+'quiz6-1': [
+  {q:'Boşluğu doldurun: "I like ___ football." (oynamak)', opts:['play','played','to playing','playing'], ans:3},
+  {q:'"Müzik dinlemek" İngilizce nasıl söylenir?', opts:['play music','hear music','listen to music','watch music'], ans:2},
+  {q:'Boşluğu doldurun: "She ___ going to the cinema." (nefret eder)', opts:['loves','likes','hates','enjoys'], ans:2},
+  {q:'"Bisiklete binmek" İngilizce nasıl söylenir?', opts:['go swimming','go cycling','go hiking','go running'], ans:1},
+  {q:'Boşluğu doldurun: "They love ___ comics." (okumak)', opts:['read','reads','reading','to read'], ans:2},
+  {q:'Doğru cümleyi seç:', opts:['She loves play football.','He likes listen to music.','I hate doing homework.','They enjoy to paint.'], ans:2},
+  {q:'"Resim yapmak" İngilizce nasıl söylenir?', opts:['surf the internet','paint pictures','read comics','play games'], ans:1},
+  {q:'Boşluğu doldurun: "He ___ swimming." (sever - he/she)', opts:['love','loving','loves','liked'], ans:2},
+  {q:'like / love / hate den sonra ne gelir?', opts:['fiil (base form)','fiil + -ing','fiil + -ed','to + fiil'], ans:1},
+  {q:'"İnternette gezinmek" İngilizce nasıl söylenir?', opts:['read books','surf the internet','watch TV','play games'], ans:1},
+  {q:'Doğru cümleyi seç:', opts:['She hates to cook.','He enjoys playing tennis.','They like watch films.','I love to cycling.'], ans:1},
+  {q:'Boşluğu doldurun: "We ___ doing the dishes." (nefret ederiz)', opts:['love','like','hate','enjoy'], ans:2}
+],
+
+'quiz6-2': [
+  {q:'"Ekmek" (bread) sayılabilir mi?', opts:['Evet, sayılabilir','Hayır, sayılamaz'], ans:1},
+  {q:'Boşluğu doldurun: "Is there ___ milk?" (soru)', opts:['some','any','no','much'], ans:1},
+  {q:'Boşluğu doldurun: "There is ___ cheese in the fridge." (olumlu)', opts:['any','no','some','many'], ans:2},
+  {q:'"Are there ___ eggs?" Doğru seçenek:', opts:['some','no','any','much'], ans:2},
+  {q:'"Elma" sayılabilir mi?', opts:['Evet, sayılabilir','Hayır, sayılamaz'], ans:0},
+  {q:'Boşluğu doldurun: "I don\'t have ___ bread." (olumsuz)', opts:['some','many','any','few'], ans:2},
+  {q:'"Süt" (milk) için doğru kullanım hangisi?', opts:['three milks','a milk','some milk','many milks'], ans:2},
+  {q:'Doğru cümleyi seç:', opts:['There are some milk.','I have any apples.','There is some bread.','Is there some orange juice?'], ans:2},
+  {q:'"___ there any oranges?" Doğru fiil:', opts:['Is','Are','Have','Do'], ans:1},
+  {q:'"Peynir" (cheese) için doğru kullanım:', opts:['two cheeses','a cheese','cheeses','some cheese'], ans:3},
+  {q:'Olumsuz cümlede hangisi kullanılır?', opts:['some','any','much','many'], ans:1},
+  {q:'Boşluğu doldurun: "There are ___ apples in the bowl." (olumlu)', opts:['any','no','some','each'], ans:2}
+],
+
+'quiz7-1': [
+  {q:'"go" fiilinin Simple Past hali nedir?', opts:['goed','gone','going','went'], ans:3},
+  {q:'"Kıvırcık saçlı" nasıl söylenir?', opts:['straight hair','wavy hair','bald','curly hair'], ans:3},
+  {q:'Boşluğu doldurun: "She ___ a sandwich an hour ago."', opts:['eats','eat','eating','ate'], ans:3},
+  {q:'"see" fiilinin Simple Past hali nedir?', opts:['seed','seen','saw','sawed'], ans:2},
+  {q:'"Gözlük takan" nasıl söylenir?', opts:['wearing a hat','wearing glasses','having a beard','having curly hair'], ans:1},
+  {q:'Boşluğu doldurun: "They ___ to the cinema yesterday."', opts:['go','goes','going','went'], ans:3},
+  {q:'"Sakal" İngilizce nasıl söylenir?', opts:['moustache','sideburns','beard','bald'], ans:2},
+  {q:'"eat" fiilinin Simple Past hali nedir?', opts:['eated','eaten','eating','ate'], ans:3},
+  {q:'Doğru cümleyi seç:', opts:['She goed to the park.','He eated a pizza.','We saw a great film.','They weared uniforms.'], ans:2},
+  {q:'"Uzun boylu" nasıl söylenir?', opts:['slim','short','tall','overweight'], ans:2},
+  {q:'"wear" fiilinin Simple Past hali nedir?', opts:['weared','worn','wore','wearing'], ans:2},
+  {q:'Simple Past (Geçmiş Zaman) ne için kullanılır?', opts:['Her gün yapılan şeyler','Gelecek planlar','Geçmişte olan olaylar','Şu an devam eden eylemler'], ans:2}
+],
+
+'quiz7-2': [
+  {q:'"Bavul" İngilizce nasıl söylenir?', opts:['passport','ticket','suitcase','boarding pass'], ans:2},
+  {q:'Boşluğu doldurun: "They ___ visit the museum tomorrow." (planlandı)', opts:['is going to','was going to','are going to','will going to'], ans:2},
+  {q:'"Varış" ne anlama gelir?', opts:['departure','journey','boarding','arrival'], ans:3},
+  {q:'Boşluğu doldurun: "She ___ travel to Paris." (planlandı)', opts:['are going to','is going to','going to','am going to'], ans:1},
+  {q:'"Pasaport" için doğru İngilizce kelime?', opts:['ticket','suitcase','passport','visa'], ans:2},
+  {q:'Boşluğu doldurun: "He ___ fly. He is afraid." (yapmayacak)', opts:['is going to','are going to','isn\'t going to','aren\'t going to'], ans:2},
+  {q:'"be going to" ne için kullanılır?', opts:['Geçmiş olaylar','Alışkanlıklar','Planlanmış gelecek','Şu anki eylemler'], ans:2},
+  {q:'"Kalkış" ne anlama gelir?', opts:['arrival','departure','journey','destination'], ans:1},
+  {q:'Doğru cümleyi seç:', opts:['I am going to travels.','She is going to visit her friend.','They is going to fly.','He are going to pack.'], ans:1},
+  {q:'"Otel rezervasyonu yapmak" nasıl söylenir?', opts:['visit a hotel','book a hotel','stay in a hotel','find a hotel'], ans:1},
+  {q:'Boşluğu doldurun: "We ___ stay in a hotel." (planlandı)', opts:['is going to','am going to','will going to','are going to'], ans:3},
+  {q:'"Hediyelik eşya" İngilizce nasıl söylenir?', opts:['souvenir','luggage','boarding pass','ticket'], ans:0}
+],
+
+'quiz8-1': [
+  {q:'"Sadık" kelimesinin İngilizcesi?', opts:['caring','reliable','loyal','honest'], ans:2},
+  {q:'"good" sıfatının comparative (karşılaştırma) hali?', opts:['gooder','more good','goodest','better'], ans:3},
+  {q:'Boşluğu doldurun: "She is ___ supportive than her brother."', opts:['supportiver','most supportive','more supportive','supportivest'], ans:2},
+  {q:'"Dürüst" kelimesinin İngilizcesi?', opts:['loyal','caring','honest','reliable'], ans:2},
+  {q:'"kind" sıfatının comparative hali?', opts:['more kind','kindest','kinder','kindly'], ans:2},
+  {q:'Boşluğu doldurun: "She is ___ than me at English." (daha iyi)', opts:['gooder','more good','better','best'], ans:2},
+  {q:'"Güvenilir" kelimesinin İngilizcesi?', opts:['loyal','caring','honest','trustworthy'], ans:3},
+  {q:'Kısa sıfatların comparative hali nasıl yapılır?', opts:['more + sıfat','sıfat + -est','sıfat + -er','sıfat + -ly'], ans:2},
+  {q:'Doğru cümleyi seç:', opts:['She is more tall than him.','He is more kinder than me.','I am more honest than my friend.','She is intelligenter than her sister.'], ans:2},
+  {q:'"bad" sıfatının comparative hali?', opts:['badder','more bad','worst','worse'], ans:3},
+  {q:'"Şefkatli" kelimesinin İngilizcesi?', opts:['loyal','caring','honest','supportive'], ans:1},
+  {q:'"big" sıfatının comparative hali? (kural: tek heceli, tek sesli, tek ünsüz → harf çiftlenir)', opts:['bigger','more big','bigest','biger'], ans:0}
+],
+
+'quiz8-2': [
+  {q:'Boşluğu doldurun: "If you sleep early, you ___ fresh." (will + feel)', opts:['feel','felt','would feel','will feel'], ans:3},
+  {q:'"Gönüllü olmak" İngilizce nasıl söylenir?', opts:['pressure','self-confident','volunteer','balanced'], ans:2},
+  {q:'If Clause Type 1\'de "if" bölümünde hangi zaman kullanılır?', opts:['will + fiil','Past Simple','Present Simple','Present Continuous'], ans:2},
+  {q:'Boşluğu doldurun: "If he ___ hard, he will pass." (çalışırsa)', opts:['will study','studied','studies','studying'], ans:2},
+  {q:'"Ekran süresi" İngilizce nasıl söylenir?', opts:['social media','screen time','balanced diet','self-confident'], ans:1},
+  {q:'Doğru cümleyi seç:', opts:['If she will study, she passes.','If you eat well, you will feel better.','If I will go, I see you.','If they will come, we are happy.'], ans:1},
+  {q:'"Dengeli beslenme" İngilizce nasıl söylenir?', opts:['screen time','pressure','balanced diet','social media'], ans:2},
+  {q:'Boşluğu doldurun: "If it rains, we ___ at home." (kalacağız)', opts:['stay','stayed','will stay','are staying'], ans:2},
+  {q:'"Kendinden emin" İngilizce nasıl söylenir?', opts:['reliable','self-confident','pressure','volunteer'], ans:1},
+  {q:'Doğru cümleyi seç:', opts:['If you studies hard, you will pass.','If she exercise, she will be healthy.','If they volunteer, they will feel good.','If I will eat, I feel better.'], ans:2},
+  {q:'"Sosyal baskı" için hangi kelime kullanılır?', opts:['volunteer','pressure','self-confident','screen time'], ans:1},
+  {q:'If Clause Type 1 hangi durumlar için kullanılır?', opts:['Gerçekleşmesi imkânsız hayaller','Geçmişte olan olaylar','Gerçekleşmesi mümkün koşullar','Alışkanlıklar'], ans:2}
+]
+
+}; /* end QUIZDATA */
+
+/* ============================================================
+   QUIZ STATE
+   ============================================================ */
+const quizState = {}; // quizId -> { selections: {qIdx: optIdx}, submitted: bool }
+
+function getState(id) {
+  if (!quizState[id]) quizState[id] = { selections: {}, submitted: false };
+  return quizState[id];
+}
+
+/* ============================================================
+   RENDER QUIZ
+   ============================================================ */
+function renderQuiz(id) {
+  const container = document.getElementById(id);
+  if (!container) return;
+  const data = QUIZDATA[id];
+  if (!data) return;
+  container.innerHTML = '';
+  const state = getState(id);
+  data.forEach((item, qi) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.innerHTML = `<div class="q-text"><span class="q-num">${qi+1}</span>${escHtml(item.q)}</div><div class="quiz-options"></div>`;
+    const optsDiv = div.querySelector('.quiz-options');
+    item.opts.forEach((opt, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-option';
+      btn.dataset.qi = qi;
+      btn.dataset.oi = oi;
+      btn.innerHTML = `<span class="opt-letter">${['A','B','C','D'][oi]}</span>${escHtml(opt)}`;
+      if (!state.submitted) {
+        btn.onclick = () => selectOption(id, qi, oi);
+      } else {
+        btn.classList.add('locked');
+        applyAnswerStyle(btn, qi, oi, state, data);
+      }
+      if (!state.submitted && state.selections[qi] === oi) btn.classList.add('selected');
+      optsDiv.appendChild(btn);
+    });
+    container.appendChild(div);
+  });
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function applyAnswerStyle(btn, qi, oi, state, data) {
+  const correct = data[qi].ans;
+  const selected = state.selections[qi];
+  if (oi === correct) {
+    btn.classList.add('correct-ans');
+  } else if (selected === oi && oi !== correct) {
+    btn.classList.add('wrong-ans');
+  }
+}
+
+function selectOption(id, qi, oi) {
+  const state = getState(id);
+  if (state.submitted) return;
+  state.selections[qi] = oi;
+  // update visuals only for this question
+  const container = document.getElementById(id);
+  container.querySelectorAll(`.quiz-option[data-qi="${qi}"]`).forEach(btn => {
+    btn.classList.remove('selected');
+    if (parseInt(btn.dataset.oi) === oi) btn.classList.add('selected');
+  });
+}
+
+function submitQuiz(id) {
+  const state = getState(id);
+  if (state.submitted) return;
+  state.submitted = true;
+  const data = QUIZDATA[id];
+  // re-render with answer styles
+  const container = document.getElementById(id);
+  container.querySelectorAll('.quiz-option').forEach(btn => {
+    const qi = parseInt(btn.dataset.qi);
+    const oi = parseInt(btn.dataset.oi);
+    btn.classList.remove('selected');
+    btn.classList.add('locked');
+    btn.onclick = null;
+    applyAnswerStyle(btn, qi, oi, state, data);
+  });
+  // calculate score
+  let score = 0;
+  data.forEach((item, qi) => { if (state.selections[qi] === item.ans) score++; });
+  const total = data.length;
+  const pct = Math.round(score / total * 100);
+  // show score box
+  const box = document.getElementById('score-' + id);
+  box.className = 'score-box show ' + (pct >= 80 ? 'great' : pct >= 50 ? 'ok' : 'low');
+  const emoji = pct === 100 ? '🏆' : pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '📚';
+  const msgs = {
+    100: ['Mükemmel!', 'Perfect score! Harika iş!'],
+    80:  ['Çok İyi!',  'Great job! Devam et!'],
+    50:  ['İyi!',      'Keep going! Çalışmaya devam!'],
+    0:   ['Tekrar Çalış!', 'Don\'t give up! Biraz daha çalış!']
+  };
+  const tier = pct === 100 ? 100 : pct >= 80 ? 80 : pct >= 50 ? 50 : 0;
+  box.innerHTML = `
+    <span class="score-big">${emoji} ${score} / ${total}</span>
+    <div class="score-msg">${msgs[tier][0]} ${msgs[tier][1]}</div>
+    <div class="score-detail">Başarı oranın: %${pct} &nbsp;|&nbsp; Doğru: ${score} &nbsp;|&nbsp; Yanlış: ${total - score}</div>
+  `;
+}
+
+function resetQuiz(id) {
+  quizState[id] = { selections: {}, submitted: false };
+  renderQuiz(id);
+  const box = document.getElementById('score-' + id);
+  box.className = 'score-box';
+  box.innerHTML = '';
+}
+
+/* ============================================================
+   WORD BANK & BLANKS
+   ============================================================ */
+let _selectedChip = null;
+
+function selectChip(el) {
+  if (el.classList.contains('used')) return;
+  if (_selectedChip) {
+    _selectedChip.classList.remove('chip-selected');
+  }
+  _selectedChip = el;
+  el.classList.add('chip-selected');
+}
+
+function fillBlank(inputEl) {
+  if (!_selectedChip) return;
+  inputEl.value = _selectedChip.dataset.word || _selectedChip.textContent.trim();
+  inputEl.classList.remove('correct','wrong');
+  _selectedChip.classList.remove('chip-selected');
+  _selectedChip.classList.add('used');
+  _selectedChip = null;
+}
+
+function checkBlanks(blankId, wbId) {
+  const container = document.getElementById(blankId);
+  const inputs = container.querySelectorAll('.blank-input');
+  let correct = 0;
+  inputs.forEach(inp => {
+    const ans = inp.dataset.answer.toLowerCase().trim();
+    const val = inp.value.toLowerCase().trim();
+    if (val === ans) { inp.classList.add('correct'); inp.classList.remove('wrong'); correct++; }
+    else             { inp.classList.add('wrong');   inp.classList.remove('correct'); }
+  });
+  const total = inputs.length;
+  const pct = Math.round(correct / total * 100);
+  const resultEl = document.getElementById(blankId + '-result');
+  let cls = pct === 100 ? '#dcfce7' : pct >= 60 ? '#fef3c7' : '#fee2e2';
+  let emoji = pct === 100 ? '🎉' : pct >= 60 ? '👍' : '💪';
+  let msg = pct === 100 ? 'Mükemmel! Perfect!' : pct >= 60 ? 'İyi iş! Keep going!' : 'Tekrar dene! Try again!';
+  resultEl.innerHTML = `<div style="margin-top:8px;padding:9px 13px;background:${cls};border-radius:9px;font-weight:800;font-size:.84rem">${emoji} ${correct}/${total} – ${msg}</div>`;
+}
+
+function resetBlanks(blankId, wbId) {
+  document.getElementById(blankId).querySelectorAll('.blank-input').forEach(inp => {
+    inp.value = ''; inp.classList.remove('correct','wrong');
+  });
+  document.getElementById(wbId).querySelectorAll('.word-chip').forEach(c => {
+    c.classList.remove('used','chip-selected');
+  });
+  document.getElementById(blankId + '-result').innerHTML = '';
+  _selectedChip = null;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function showGrade(g) {
+  document.getElementById('home-section').style.display = g ? 'none' : 'block';
+  document.querySelectorAll('.grade-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.grade-btn').forEach(b => b.classList.remove('active'));
+  if (g) {
+    const sec = document.getElementById('grade-' + g);
+    sec.classList.add('active');
+    document.querySelector(`.grade-btn[data-grade="${g}"]`).classList.add('active');
+    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function showUnit(grade, unit, tabEl) {
+  document.querySelectorAll(`#grade-${grade} .unit-content`).forEach(el => el.style.display = 'none');
+  document.getElementById(`unit${grade}-${unit}`).style.display = 'block';
+  tabEl.closest('.unit-tabs').querySelectorAll('.unit-tab').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+}
+
+function toggleAns(id, btn) {
+  const el = document.getElementById(id);
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    btn.textContent = 'Cevapları Gizle 🙈';
+  } else {
+    el.style.display = 'none';
+    btn.textContent = 'Cevapları Gör 👁️';
+  }
+}
+
+/* ============================================================
+   INIT – render all quizzes on load
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  Object.keys(QUIZDATA).forEach(id => renderQuiz(id));
+});
+</script>
+</body>
+</html>
